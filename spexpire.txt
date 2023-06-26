@@ -24,5 +24,20 @@ foreach ($app in $Applications) {
            Write-Host "Will Expire - $AppName"
         }
    }
-
+   #Write-Host "-------------------"
+   #foreach ($c in $cert) {
+        #Write-Host $c
+   #     $CStartDate = $c.StartDate
+   #     $CEndDate = $c.EndDate
+   #     $COperation = $CEndDate - $now
+   #     $CODays = $COperation.Days
+   #     Write-Host "$CODays"
+   #     #$Owner = Get-AzureADApplicationOwner -ObjectId $app.ObjectId
+   #     #Write-Host "AICI + $app.ObjectId"
+   #     #Write-Host "Aici ----- $Owner"
+   #     #$Username = $Owner.UserPrincipalName -join ";"
+   #     #$OwnerID = $Owner.ObjectID -join ";"
+   #     #Write-Host "Username: + $Username"
+   #     #Write-Host "OwnerId: + $OwnerID"    
+  #}
 }
