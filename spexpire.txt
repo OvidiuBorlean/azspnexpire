@@ -1,0 +1,28 @@
+Connect-AzureAD
+$Applications = Get-AzureADApplication -all $true
+$cert = $AppCreds.KeyCredentials
+$now = get-date
+$alert = 180
+
+#Write-Host $Applications
+foreach ($app in $Applications) {
+    $AppName = $app.DisplayName
+    $AppID = $app.objectid
+    $ApplID = $app.AppId
+    $AppCreds = Get-AzureADApplication -ObjectId $AppID | select PasswordCredentials, KeyCredentials
+    $secret = $AppCreds.PasswordCredentials
+    $cert = $AppCreds.KeyCredentials
+    Write-Host $AppName
+    foreach ($s in $secret) {
+        #echo $s
+        $StartDate = $s.StartDate
+        $EndDate = $s.EndDate
+        $operation = $EndDate - $now
+        $ODays = $operation.Days
+        echo $ODays
+        if ($ODays -ge $alert) {
+           Write-Host "Will Expire - $AppName"
+        }
+   }
+
+}
